@@ -1,0 +1,45 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.env
+
+# Logs
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Frontend (Vite)
+client/node_modules/
+client/dist/
+client/.env
+
+# Backend
+server/node_modules/
+server/.env
+
+# Optional: Mac system files
+*.DS_Store
+
+# Optional: Linux
+*.swp
+
+# Optional: VSCode settings
+client/.vscode/
+server/.vscode/
