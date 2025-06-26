@@ -3,10 +3,28 @@ import axios from 'axios';
 import TodoList from './components/TodoList';
 import AddTodo from './components/AddTodo';
 
-const URL  = 'http://localhost:5000'
+const URL  = 'http://localhost:5000';
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+  const [darkMode, setDarkMode] = useState(() => {
+    // Read saved value from localStorage or default to false
+    const stored = localStorage.getItem("theme");
+    return stored === "dark";
+  });
+
+  // Sync <html> class and localStorage when darkMode changes
+  useEffect(() => {
+    const html = document.documentElement;
+    if (darkMode) {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   // Fetch todos on load
   useEffect(() => {
@@ -44,8 +62,13 @@ function App() {
 
 
   return (
-    <div style={{ maxWidth: '500px', margin: 'auto', padding: '2rem' }}>
-      <h1>📝 Todo App</h1>
+    <div className="bg-white dark:bg-black h-screen font-sans">
+      <button className="p-2 m-4 bg-gray-200 dark:bg-gray-800 dark:text-amber-50 rounded float-right"
+        onClick={() => setDarkMode(prev => !prev)}>
+        Toggle {darkMode ? "Light" : "Dark"} Mode
+      </button>
+
+      <h1 className="mx-auto">My Todo App</h1>
       <AddTodo onAdd={addTodo} />
       <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
     </div>

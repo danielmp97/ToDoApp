@@ -11,15 +11,14 @@ function AddTodo({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
         placeholder="Add new todo..."
-        style={{ width: '70%', padding: '0.5rem' }}
       />
-      <button type="submit" style={{ padding: '0.5rem', marginLeft: '0.5rem' }}>Add</button>
+      <button type="submit">Add</button>
     </form>
   );
 }
