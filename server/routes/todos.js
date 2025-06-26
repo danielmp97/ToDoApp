@@ -21,5 +21,30 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (!todo) return res.status(404).json({ error: "Todo not found" });
+
+    todo.completed = !todo.completed;
+    await todo.save();
+    res.json(todo);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to toggle todo" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const deleted = await Todo.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: "Todo not found" });
+
+    res.json({ message: "Todo deleted", id: req.params.id });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to delete todo" });
+  }
+});
+
+
 module.exports = router;
 
