@@ -62,17 +62,21 @@ function App() {
 
 
   return (
-    <div className="bg-white dark:bg-black h-screen font-sans">
-      <button className="p-2 m-4 bg-gray-200 dark:bg-gray-800 dark:text-amber-50 rounded float-right"
+    <div className="bg-white dark:bg-black font-sans text-black dark:text-amber-50 h-screen">
+      <button className="p-3 m-4 bg-gray-200 dark:bg-gray-800 dark:text-amber-50 rounded-2xl float-right"
         onClick={() => setDarkMode(prev => !prev)}>
         Toggle {darkMode ? "Light" : "Dark"} Mode
       </button>
 
-      <h1 className="mx-auto">My Todo App</h1>
-      <AddTodo onAdd={addTodo} />
-      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+      <div className='max-w-2xl mx-auto p-4'>
+        <h1 className='text-4xl text-center font-bold'>My To-Do App</h1>
+        <AddTodo onAdd={addTodo} />
+        <div className='mt-4'>
+          <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+        </div>
+      </div>
     </div>
   );
-}
+} 
 
 export default App;
